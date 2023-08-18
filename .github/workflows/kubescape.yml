@@ -14,8 +14,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
+        with:
+           path:
+            export PATH=$PATH:/home/runner/.kubescape/bin
+           
       - name: Install Kubescape
         run: curl -s https://raw.githubusercontent.com/armosec/kubescape/master/install.sh | /bin/bash
         
       - name: Scan YAML files
         run: kubescape scan framework nsa --exclude-namespaces kube-system,kube-public
+
+      
